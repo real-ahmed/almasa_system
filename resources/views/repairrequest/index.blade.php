@@ -37,7 +37,7 @@
                         <th>@lang("المستلم")</th>
                         <th>@lang("المخزن")</th>
                         <th>@lang("الحالة")</th>
-                        @if($type == 0 || auth()->user()->isreceptionist)
+                        @if($type == 0 || auth()->user()->isreceptionist )
                             <th>@lang("العمليات")</th>
                         @endif
                     </tr>
