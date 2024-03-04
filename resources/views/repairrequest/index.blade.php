@@ -37,7 +37,7 @@
                         <th>@lang("المستلم")</th>
                         <th>@lang("المخزن")</th>
                         <th>@lang("الحالة")</th>
-                        @if($type == 0 || auth()->user()->isadmin)
+                        @if($type == 0 || auth()->user()->isreceptionist)
                             <th>@lang("العمليات")</th>
                         @endif
                     </tr>
@@ -52,7 +52,7 @@
                             <td>{{$screen->repairs->first()->receptionist->name}}</td>
                             <td>{{$screen->warehouse->name}}</td>
                             <td><?php echo $screen->statusName ?></td>
-                            @if($type == 0 || auth()->user()->isadmin)
+                            @if($type == 0 || auth()->user()->isreceptionist)
 
                             <td>
                                 <a
