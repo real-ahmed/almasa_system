@@ -51,7 +51,7 @@
                         <td>{{$employee->name}}</td>
                         <td>{{$employee->email}}</td>
                         <td>{{$employee->phone}}</td>
-                        <td>{{showAmount($employee->employee->salary)}} {{$general->money_sign}}</td>
+                        <td><a href="{{route('receptionist.user.advance.payment.all',$employee->id)}}">{{showAmount($employee->employee->salary)}} {{$general->money_sign}}</a></td>
                         <td><span>{{showAmount($employee->MonthlyBonus)}} {{$general->money_sign}}</span></td>
                         <td><span>{{showAmount($employee->MonthlyDeduction)}} {{$general->money_sign}}</span></td>
                         <td>{{showAmount($employee->MonthlyBonus + $employee->employee->salary - $employee->MonthlyDeduction)}} {{$general->money_sign}}</td>

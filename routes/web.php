@@ -31,7 +31,6 @@ Route::middleware(['auth'])->group(function () {
         });
 
 
-
         Route::controller('BonusController')->name('bonus.')->group(function () {
             Route::get('bonus', 'index')->name('all');
         });
@@ -177,9 +176,15 @@ Route::middleware(['auth'])->group(function () {
         });
 
 
-
         Route::middleware(['receptionist'])->name("receptionist.")->group(function () {
 
+
+            Route::controller("AdvancePaymentController")->name("user.advance.payment.")->group(function () {
+                Route::get("advance/payment/{employeeId}", "index")->name("all");
+                Route::post("advance/payment/save/{id?}", "save")->name("save");
+                Route::get("advance/payment/delete/{id?}", "delete")->name("delete");
+
+            });
 
             Route::controller("UserController")->name("user.")->group(function () {
                 Route::get("profile-setting/{id}", "setting")->name("setting");
@@ -279,16 +284,14 @@ Route::middleware(['auth'])->group(function () {
             });
 
 
-            Route::controller('ExpenseController')->name('expense.')->group(function (){
-                Route::get('expenses/','index')->name('all');
-                Route::post('expenses/save/{id?}','save')->name('save');
-                Route::get('expenses/delete/{id?}','delete')->name('delete');
+            Route::controller('ExpenseController')->name('expense.')->group(function () {
+                Route::get('expenses/', 'index')->name('all');
+                Route::post('expenses/save/{id?}', 'save')->name('save');
+                Route::get('expenses/delete/{id?}', 'delete')->name('delete');
             });
 
 
         });
-
-
 
 
         Route::middleware(['warehouse.employee'])->name("warehouse.employee.")->group(function () {
@@ -327,7 +330,6 @@ Route::middleware(['auth'])->group(function () {
             });
 
 
-
         });
 
 
@@ -358,7 +360,6 @@ Route::middleware(['auth'])->group(function () {
             });
 
 
-
             Route::controller("BrandController")->name("brand.")->group(function () {
                 Route::get('brand/{type}', 'index')->name('all');
                 Route::post('brand/{type}/save/{id?}', 'save')->name('save');
@@ -366,7 +367,6 @@ Route::middleware(['auth'])->group(function () {
             });
 
         });
-
 
 
     });

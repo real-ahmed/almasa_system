@@ -158,6 +158,11 @@ class User extends Authenticatable
         return $this->hasMany(Bonus::class, 'employee_id');
     }
 
+    public function AdvancePayments()
+    {
+        return $this->hasMany(AdvancePayment::class, 'employee_id');
+    }
+
     public function deductions()
     {
         return $this->hasMany(Deduction::class, 'employee_id');
