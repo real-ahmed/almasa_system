@@ -81,6 +81,7 @@ class RepairRequestController extends Controller
     public function save(Request $request, $id = null)
     {
 
+
         $this->validateRequest($request);
 
         $screen = Screen::findOrFail($id);
@@ -205,7 +206,8 @@ class RepairRequestController extends Controller
 
 
                         $bonus->employee_id = $service->engineer_maintenance_id;
-                        $bonus->amount = $service->engineer_maintenance->getScreenBonusAmount($screen);
+                        $bonus->amount = $service->engineer_maintenance->getScreenBonusAmount($service);
+
                         $bonus->save();
 
                         $screenBonus = new ScreenBonus();
@@ -227,6 +229,7 @@ class RepairRequestController extends Controller
 //                }
 
             }
+
 
             $repair = Repair::find($screen->repairs->first()->id);
             if ($repair->screens->where('status', 0)->first() == null) {
