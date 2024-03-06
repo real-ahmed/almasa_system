@@ -163,7 +163,7 @@
         <table>
             <tr>
                 <th style="width: 100px ; background-color: #ec323b; color: #fff;">تاريخ التسليم:</th>
-                <td>{{date_format($deliver->repair->created_at,'d/m/y h:i')}}</td>
+                <td>{{date_format(now(),'d/m/y h:i')}}</td>
             </tr>
             <tr>
                 <th style="width: 100px ; background-color: #ec323b; color: #fff;">الرقم المرجعي:</th>
