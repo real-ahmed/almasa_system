@@ -233,25 +233,25 @@
             <tr>
                 <td style="width: 200px ;color: #ec323b; "><label for="invoiceAmount">قيمة الفاتورة:</label></td>
                 <td>                    <span
-                        id="totalAmount">{{$deliver->total_amount  ?showAmount($deliver->total_amount ): '0'}} </span> {{$general->money_sign}}
+                        id="totalAmount">{{$deliver->total_amount  ?showAmount($deliver->total_amount ,0): '0'}} </span> {{$general->money_sign}}
                 </td>
             </tr>
             <tr>
                 <td style="width: 200px ;color: #ec323b; "><label for="advancePayment">العربون:</label></td>
                 <td>                    <span
-                        id="totalAmount">{{$deliver->repair->paid  ?showAmount($deliver->repair->paid ): '0'}} </span> {{$general->money_sign}}</td>
+                        id="totalAmount">{{$deliver->repair->paid  ?showAmount($deliver->repair->paid ,0): '0'}} </span> {{$general->money_sign}}</td>
             </tr>
             <tr>
                 <td style="width: 200px ;color: #ec323b; "><label for="remainingAmount">المتبقي:</label></td>
                 <td>
                     <span
-                        id="totalAmount">{{$deliver->total_amount  ?showAmount($deliver->total_amount - ($deliver->received_amount+$deliver->repair->paid) ): '0'}} </span> {{$general->money_sign}}
+                        id="totalAmount">{{$deliver->total_amount  ?showAmount($deliver->total_amount - ($deliver->received_amount+$deliver->repair->paid) ,0): '0'}} </span> {{$general->money_sign}}
                 </td>
             </tr>
             <tr>
                 <td style="width: 200px ;color: #ec323b; "><label for="paidAmount">المبلغ المدفوع:</label></td>
                 <td>                   <span
-                        id="totalAmount">{{$deliver->received_amount  ?showAmount($deliver->received_amount ): '0'}} </span> {{$general->money_sign}}
+                        id="totalAmount">{{$deliver->received_amount  ?showAmount($deliver->received_amount,0 ): '0'}} </span> {{$general->money_sign}}
                 </td>
             </tr>
         </table>

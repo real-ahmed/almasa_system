@@ -101,6 +101,9 @@ class PurchaseController extends Controller
         $itemsToDelete = $existingItemIds->diff($requestedItemIds);
 
         // Delete the items that are not in the request
+        if ($itemsToDelete && !$purchase->unlinked()){
+            return back()->withErrors([ 'لا يمكن حذف العنصر لأنه مرتبط بعناصر أخرى']);
+        }
         PurchaseItem::whereIn('id', $itemsToDelete)->delete();
         $purchase->save();
 
@@ -152,7 +155,7 @@ class PurchaseController extends Controller
 
             return back()->with('success', 'تم حفظ البيانات');
         }
-        return back()->with('exception', 'لا يمكن حذف البيانات الآن لأنها مرتبطة بعناصر أخرى');
+        return back()->withErrors('purchase_items', 'لا يمكن حذف البيانات الآن لأنها مرتبطة بعناصر أخرى');
     }
     public function getInvoice($id)
     {
