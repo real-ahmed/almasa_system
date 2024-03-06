@@ -178,7 +178,7 @@
                     method: 'GET',
                     data: {phone: phoneNumber},
                     success: function (response) {
-                        if (response !== '') {
+                        if (response.name !== '') {
                             customerNameInput.val(response.name);
                             customerAddressInput.val(response.address);
                             customerNameInput.prop('readonly', true);
