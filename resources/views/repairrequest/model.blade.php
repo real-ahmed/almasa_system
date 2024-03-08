@@ -51,7 +51,7 @@
                                                         data-price="{{ $product->selling_price }}"
                                                         data-quantity={{$product->instockquantity}}
                                                         value="{{ $product->id }}">
-                                                        {{ $product->category->name }} - {{ $product->subcategory->name }} - {{ $product->brand->name }} -{{ $product->name }}</option>
+                                                        {{ $product->category->name }} - {{ $product->subcategory->name??null }} - {{ $product->brand->name??null }} -{{ $product->name }}</option>
                                                 @endforeach
                                             </select>
                                             <div class="input-group-append">

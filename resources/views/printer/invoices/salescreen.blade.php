@@ -156,7 +156,7 @@
     </div>
     <div style="display: flex; align-items: center; justify-content: center;">
         <h2 style="background: #b9141d; width: 200px ; padding: 15px 30px; color: #fff; border-radius: 10px;"> فاتورة
-            الصيانة </h2>
+            بيع </h2>
     </div>
 
     <form>

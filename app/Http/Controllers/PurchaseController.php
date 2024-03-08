@@ -155,7 +155,7 @@ class PurchaseController extends Controller
 
             return back()->with('success', 'تم حفظ البيانات');
         }
-        return back()->withErrors('purchase_items', 'لا يمكن حذف البيانات الآن لأنها مرتبطة بعناصر أخرى');
+        return back()->with('exception', 'لا يمكن حذف البيانات الآن لأنها مرتبطة بعناصر أخرى');
     }
     public function getInvoice($id)
     {
