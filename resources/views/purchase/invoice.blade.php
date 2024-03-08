@@ -38,9 +38,9 @@
             <tr>
                 <td>{{ $item->product->name }}</td>
                 <td>{{ $item->product->code }}</td>
-                <td>{{ $item->product->brand->name }}</td>
+                <td>{{ $item->product->brand->name ?? null }}</td>
                 <td>{{ $item->product->category->name }}</td>
-                <td>{{ $item->product->subcategory->name }}</td>
+                <td>{{ $item->product->subcategory->name??null }}</td>
                 <td>{{ $item->quantity }}</td>
                 <td>{{ $item->price }} {{$general->money_sign}}</td>
                 <td>{{ $item->quantity * $item->price }} {{$general->money_sign}}</td>

@@ -83,7 +83,7 @@
                                                     data-buy_price="{{$screen->buy->price}}"
 
 
-                                                    value="{{ $screen->id }}">( {{ $screen->code }} ) {{ $screen->brand->name }} - {{ $screen->model  }}</option>
+                                                    value="{{ $screen->id }}">( {{ $screen->code }} ) {{ $screen->brand->name ?? null }} - {{ $screen->model  }}</option>
                                             @endforeach
                                         </select>
                                         <div class="input-group-append">

@@ -17,7 +17,7 @@
                         <select class="form-control select2" name="product_id">
                             @foreach($products as $product)
                                 <option value="{{ $product->id }}">
-                                    {{ $product->category->name }} - {{ $product->subcategory->name }} - {{ $product->brand->name }} -{{ $product->name }}</option>
+                                    {{ $product->category->name }} - {{ $product->subcategory->name??null }} - {{ $product->brand->name ?? null }} -{{ $product->name }}</option>
                             @endforeach
                         </select>
                     </div>

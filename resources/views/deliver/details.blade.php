@@ -79,7 +79,7 @@
                     @foreach($deliver->repair->screens->whereNotIn('status',[4, 5]) as $screen)
                         <tr>
                             <td>{{ $screen->code }}</td>
-                            <td>{{ $screen->brand->name }}</td>
+                            <td>{{ $screen->brand->name ?? null }}</td>
                             <td>{{ $screen->model }}</td>
                                                         <td>{{ $screen->serial }}</td>
 

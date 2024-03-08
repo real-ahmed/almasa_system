@@ -182,7 +182,7 @@
                                         </td>
 
                                         <td>
-                                            <span class="screen-brand">{{ $screen->brand->name }}</span>
+                                            <span class="screen-brand">{{ $screen->brand->name ?? null }}</span>
                                         </td>
                                         <td>
                                             <span class="screen-model">{{ $screen->model }}</span>

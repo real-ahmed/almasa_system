@@ -51,7 +51,7 @@
                     @foreach($invoice->screens as $screen)
                         <tr>
                             <td>{{ $screen->screen->code }}</td>
-                            <td>{{ $screen->screen->brand->name }}</td>
+                            <td>{{ $screen->screen->brand->name ?? null }}</td>
                             <td>{{ $screen->screen->model }}</td>
                             <td>{{ $screen->screen->warehouse->name }}</td>
                             <td>{{ showAmount($screen->screen->buy->price) }} {{$general->money_sign}}</td>

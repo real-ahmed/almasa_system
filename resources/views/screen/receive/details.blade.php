@@ -67,7 +67,7 @@
                     @foreach($repair->screens as $screen)
                         <tr>
                             <td>{{ $screen->code }}</td>
-                            <td>{{ $screen->brand->name }}</td>
+                            <td>{{ $screen->brand->name ?? null }}</td>
                             <td>{{ $screen->model }}</td>
                             <td>{{ $screen->serial }}</td>
 

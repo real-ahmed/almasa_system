@@ -46,7 +46,7 @@
                             <td>{{$subcategory->category->name}}</td>
                             <td> {{date_format($subcategory->created_at,'m/d/y h:iA')}}</td>
                             <td><a data-toggle="modal" data-target="#repairModal" data-id="{{ $subcategory->id }}"
-                                   data-name="{{ $subcategory->name }}"
+                                   data-name="{{ $subcategory->name??null }}"
                                    data-category_id="{{ $subcategory->category->id }}" class="btn btn-primary edit"><i
                                         class="fa-solid fa-pen"></i></a>
                                 @if(auth()->user()->isreceptionist)
