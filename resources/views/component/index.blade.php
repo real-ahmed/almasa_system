@@ -127,7 +127,49 @@
     @include("models.loader")
     @include("models.delete")
 @endsection
+@push('script')
+    <script>
+        $(document).ready(function () {
+            // Use event delegation for edit buttons
+            $(document).on('click', '.edit', function () {
+                var data = $(this).data();
+                var form = modal.find('form');
+                form.attr('action', `${saveAction}/${data.id}`);
+                form.find('[name=name]').val(data.name);
+                form.find('[name=code]').val(data.code);
+                form.find('[name=brand_id]').val(data.brand_id);
 
+                form.find('[name=category_id]').val(data.category_id);
+                form.find('[name=auto_request_quantity]').val(data.auto_request_quantity);
+                form.find('[name=selling_price]').val(data.selling_price);
+
+                // Clear existing options
+                $('#subcategory_id option:not(:first-child)').remove();
+
+                // Add new options based on the response
+                $.ajax({
+                    url: '{{ route('warehouse.employee.subcategory.getSubcategories') }}',
+                    method: 'GET',
+                    data: {category_id: data.category_id},
+                    success: function (subcategories) {
+                        $.each(subcategories, function (index, subcategory) {
+                            $('#subcategory_id').append($('<option>', {
+                                value: subcategory.id,
+                                text: subcategory.name
+                            }));
+                        });
+
+                        // Set the selected subcategory
+                        form.find('[name=subcategory_id]').val(data.subcategory_id);
+                    }
+                });
+
+                modal.modal('show');
+            });
+        });
+
+    </script>
+@endpush
 @push('script')
     <script>
         (function ($) {
@@ -189,41 +231,41 @@
 
             }
 
-            $('.edit').click(function () {
-                var data = $(this).data();
-                var form = modal.find('form');
-                form.attr('action', `${saveAction}/${data.id}`);
-                form.find('[name=name]').val(data.name);
-                form.find('[name=code]').val(data.code);
-                form.find('[name=brand_id]').val(data.brand_id);
+            {{--$('.edit').click(function () {--}}
+            {{--    var data = $(this).data();--}}
+            {{--    var form = modal.find('form');--}}
+            {{--    form.attr('action', `${saveAction}/${data.id}`);--}}
+            {{--    form.find('[name=name]').val(data.name);--}}
+            {{--    form.find('[name=code]').val(data.code);--}}
+            {{--    form.find('[name=brand_id]').val(data.brand_id);--}}
 
-                form.find('[name=category_id]').val(data.category_id);
-                form.find('[name=auto_request_quantity]').val(data.auto_request_quantity);
-                form.find('[name=selling_price]').val(data.selling_price);
+            {{--    form.find('[name=category_id]').val(data.category_id);--}}
+            {{--    form.find('[name=auto_request_quantity]').val(data.auto_request_quantity);--}}
+            {{--    form.find('[name=selling_price]').val(data.selling_price);--}}
 
-                // Clear existing options
-                $('#subcategory_id option:not(:first-child)').remove();
+            {{--    // Clear existing options--}}
+            {{--    $('#subcategory_id option:not(:first-child)').remove();--}}
 
-                // Add new options based on the response
-                $.ajax({
-                    url: '{{ route('warehouse.employee.subcategory.getSubcategories') }}',
-                    method: 'GET',
-                    data: {category_id: data.category_id},
-                    success: function (subcategories) {
-                        $.each(subcategories, function (index, subcategory) {
-                            $('#subcategory_id').append($('<option>', {
-                                value: subcategory.id,
-                                text: subcategory.name
-                            }));
-                        });
+            {{--    // Add new options based on the response--}}
+            {{--    $.ajax({--}}
+            {{--        url: '{{ route('warehouse.employee.subcategory.getSubcategories') }}',--}}
+            {{--        method: 'GET',--}}
+            {{--        data: {category_id: data.category_id},--}}
+            {{--        success: function (subcategories) {--}}
+            {{--            $.each(subcategories, function (index, subcategory) {--}}
+            {{--                $('#subcategory_id').append($('<option>', {--}}
+            {{--                    value: subcategory.id,--}}
+            {{--                    text: subcategory.name--}}
+            {{--                }));--}}
+            {{--            });--}}
 
-                        // Set the selected subcategory
-                        form.find('[name=subcategory_id]').val(data.subcategory_id);
-                    }
-                });
+            {{--            // Set the selected subcategory--}}
+            {{--            form.find('[name=subcategory_id]').val(data.subcategory_id);--}}
+            {{--        }--}}
+            {{--    });--}}
 
-                modal.modal('show');
-            });
+            {{--    modal.modal('show');--}}
+            {{--});--}}
 
 
             modal.on('hidden.bs.modal', function () {
