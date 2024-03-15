@@ -72,9 +72,9 @@
                                     <a data-id="{{ $component->id }}"
                                        data-name="{{ $component->name }}"
                                        data-code="{{$component->code}}"
-                                       data-brand_id="{{$component->brand->id??null}}"
+                                       data-brand_id="{{$component->brand_id??null}}"
 
-                                       data-category_id="{{$component->category->id}}"
+                                       data-category_id="{{$component->category_id}}"
                                        data-subcategory_id="{{$component->subcategory->id??null}}"
                                        data-selling_price="{{$component->selling_price}}"
                                        data-auto_request_quantity="{{$component->auto_request_quantity}}"
