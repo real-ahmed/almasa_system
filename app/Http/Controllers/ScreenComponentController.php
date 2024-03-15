@@ -30,7 +30,7 @@ class ScreenComponentController extends Controller
 
         $categories = Category::orderBy('id','desc')->get();
         $subcategories = Subcategory::orderBy('id','desc')->get();
-        $brands = Brand::orderBy('id','desc')->get();
+        $brands = Brand::where('type',1)->orderBy('id','desc')->get();
 
 
 

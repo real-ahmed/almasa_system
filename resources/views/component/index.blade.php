@@ -72,9 +72,9 @@
                                     <a data-id="{{ $component->id }}"
                                        data-name="{{ $component->name }}"
                                        data-code="{{$component->code}}"
-                                       data-brand_id="{{$component->brand_id??null}}"
+                                       data-brand_id="{{$component->brand->id??null}}"
 
-                                       data-category_id="{{$component->category_id}}"
+                                       data-category_id="{{$component->category->id}}"
                                        data-subcategory_id="{{$component->subcategory->id??null}}"
                                        data-selling_price="{{$component->selling_price}}"
                                        data-auto_request_quantity="{{$component->auto_request_quantity}}"
@@ -196,7 +196,7 @@
                 form.find('[name=name]').val(data.name);
                 form.find('[name=code]').val(data.code);
                 form.find('[name=brand_id]').val(data.brand_id);
-console.log(data.brand_id);
+
                 form.find('[name=category_id]').val(data.category_id);
                 form.find('[name=auto_request_quantity]').val(data.auto_request_quantity);
                 form.find('[name=selling_price]').val(data.selling_price);

@@ -8,7 +8,7 @@
             <style>
 
 
-                .modal-body {
+                .modal-body1 {
                     padding: 0;
                     margin: 0;
 
@@ -276,7 +276,7 @@
 
 
             </style>
-            <div class="modal-body">
+            <div class="modal-body modal-body1">
                 <div class="loader-container">
                     <div class="loader">
                         <div class="circle"></div>
