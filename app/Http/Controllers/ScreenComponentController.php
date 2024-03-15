@@ -28,9 +28,9 @@ class ScreenComponentController extends Controller
             })
             ->orderBy('id','desc')->paginate(getPaginate());
 
-        $categories = Category::orderBy('id','desc')->paginate(getPaginate());
-        $subcategories = Subcategory::orderBy('id','desc')->paginate(getPaginate());
-        $brands = Brand::orderBy('id','desc')->paginate(getPaginate());
+        $categories = Category::orderBy('id','desc');
+        $subcategories = Subcategory::orderBy('id','desc');
+        $brands = Brand::orderBy('id','desc');
 
 
 
