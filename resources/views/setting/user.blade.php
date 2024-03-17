@@ -162,8 +162,12 @@
                                             <span class="input-group-text">{{$general->money_sign}}</span>
                                         </div>
                                     </div>
-                                </div>
 
+                                </div>
+                                <div class="form-group">
+                                    <label for="amount">@lang("وقت الحضور")</label>
+                                    <input required type="text" id="arrival_time" name="arrival_time" class="form-control timepicker">
+                                </div>
 
                             </div> <!-- /.col -->
                             <div class="col-md-6">
@@ -180,6 +184,12 @@
                                                     class="fa-solid fa-calendar-days"></span></div>
                                         </div>
                                     </div>
+
+
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="amount">@lang("وقت الانصراف")</label>
+                                    <input required type="text" id="departure_time" name="departure_time" class="form-control timepicker">
                                 </div>
 
                             </div>
@@ -264,3 +274,34 @@
 
     </div>
 @endsection
+@push('script')
+    <script>
+        (function ($) {
+            "use strict";
+
+            // Initialize timepicker for elements with class 'timepicker'
+            $('.timepicker').timepicker({
+                timeFormat: 'h:mm p',
+                interval: 60,
+                minTime: '00:00am',
+                maxTime: '11:00pm',
+                defaultTime: '08:00am',
+                startTime: '00:00',
+                dynamic: false,
+                dropdown: true,
+                scrollbar: true
+            });
+
+            // Set departure time
+            var departureTime = '{{ \Carbon\Carbon::parse($user->employee->departure_time)->format('h:i A')}}';
+            $('#departure_time').timepicker('setTime', departureTime);
+
+            // Set arrival time
+            var arrivalTime = '{{ \Carbon\Carbon::parse($user->employee->arrival_time)->format('h:i A')}}';
+            $('#arrival_time').timepicker('setTime', arrivalTime);
+        })(jQuery);
+
+
+
+    </script>
+@endpush

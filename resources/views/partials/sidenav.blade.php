@@ -409,6 +409,48 @@
 
             </ul>
         @endif
+
+
+        @if(auth()->user()->isreceptionist)
+            <p class="text-muted nav-heading mt-4 mb-1">
+                <span>@lang("الحضور و الانصراف")</span>
+
+            </p>
+            <ul class="navbar-nav flex-fill w-100 mb-2">
+
+
+                <li class="nav-item">
+                    <a href="{{route("receptionist.attendance.request.arrival")}}" aria-expanded="false"
+                       class="nav-link">
+                        <i class="fa-solid fa-check"></i>
+                        <span class="ml-3 item-text">@lang("طلبات الحضور")</span>
+                        <span class="badge badge-pill badge-danger">{{arrivalRequestsCount()}}</span>
+
+                    </a>
+                </li>
+
+
+                <li class="nav-item">
+                    <a href="{{route("receptionist.attendance.request.departure")}}" aria-expanded="false"
+                       class="nav-link">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                        <span class="ml-3 item-text">@lang("طلبات الانصراف")</span>
+                        <span class="badge badge-pill badge-danger">{{departureRequestsCount()}}</span>
+
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{{route("receptionist.attendance.history")}}" aria-expanded="false" class="nav-link">
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+                        <span class="ml-3 item-text">@lang("سجل الحضور و الانصراف")</span>
+                    </a>
+                </li>
+            </ul>
+        @endif
+
+
+
         {{--        @if(auth()->user()->isadmin)--}}
         {{--            <p class="text-muted nav-heading mt-4 mb-1">--}}
         {{--                <span>@lang("العملاء")</span>--}}

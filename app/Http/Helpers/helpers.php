@@ -36,6 +36,17 @@ function SalaryRequestsCount(){
     return $salary->count();
 }
 
+function arrivalRequestsCount(){
+    $arrival =  \App\Models\Attendance::where('status',0);
+    return $arrival->count();
+}
+
+function departureRequestsCount(){
+    $departure =  \App\Models\Attendance::where('status',1);
+    return $departure->count();
+}
+
+
 function showAmount($amount, $decimal = 2, $separate = true, $exceptZeros = false)
 {
     $separator = '';

@@ -179,6 +179,16 @@ Route::middleware(['auth'])->group(function () {
         Route::middleware(['receptionist'])->name("receptionist.")->group(function () {
 
 
+
+            Route::controller("AttendanceController")->name("attendance.")->group(function () {
+                Route::get("attendance/requests/arrival/", "arrivalRequests")->name("request.arrival");
+                Route::get("attendance/requests/departure/", "departureRequests")->name("request.departure");
+                Route::get("attendance/departure/history", "recordHistory")->name("history");
+                Route::post("attendance/save/{id?}", "save")->name("save");
+
+            });
+
+
             Route::controller("AdvancePaymentController")->name("user.advance.payment.")->group(function () {
                 Route::get("advance/payment/{employeeId}", "index")->name("all");
                 Route::post("advance/payment/save/{id?}", "save")->name("save");

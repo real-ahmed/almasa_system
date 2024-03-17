@@ -43,7 +43,8 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="salary_date" class="col-form-label"><small>@lang("يوم القبض")</small>@lang("تاريخ التعين")</label>
+                        <label for="salary_date"
+                               class="col-form-label"><small>@lang("يوم القبض")</small>@lang("تاريخ التعين")</label>
                         <div class="input-group">
                             <input type="text" class="form-control drgpicker" id="date-input1" name="salary_date"
                                    value="{{date('m/d/Y')}}" aria-describedby="button-addon2">
@@ -54,7 +55,17 @@
                         </div>
                     </div>
                     <div class="form-group">
-                            <label for="simpleinput">@lang("كلمة المرور الافتراضية")</label>
+                        <label for="amount">@lang("وقت الحضور")</label>
+                        <input required type="text" id="arrival_time" name="arrival_time"
+                               class="form-control timepicker">
+                    </div>
+                    <div class="form-group">
+                        <label for="amount">@lang("وقت الانصراف")</label>
+                        <input required type="text" id="departure_time" name="departure_time"
+                               class="form-control timepicker">
+                    </div>
+                    <div class="form-group">
+                        <label for="simpleinput">@lang("كلمة المرور الافتراضية")</label>
                         <strong>{{$general->default_new_user_pass}}</strong>
                     </div>
 
@@ -74,3 +85,22 @@
 
 
 
+@push('script')
+    <script>
+        (function ($) {
+
+            "use strict";
+            $('.timepicker').timepicker({
+                timeFormat: 'h:mm p',
+                interval: 60,
+                minTime: '00:00am',
+                maxTime: '11:00pm',
+                defaultTime: '08:00am',
+                startTime: '00:00',
+                dynamic: false,
+                dropdown: true,
+                scrollbar: true
+            });
+        })(jQuery);
+    </script>
+@endpush

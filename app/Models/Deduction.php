@@ -16,7 +16,10 @@ class Deduction extends Model
     {
         return $this->belongsTo(User::class);
     }
-
+    public function Attendance()
+    {
+        return $this->hasOne(Attendance::class, 'deductions_id');
+    }
 
     public function unlinked()
     {
