@@ -68,7 +68,7 @@ class CheckArrivalAndDeparture extends Command
             $deduction = Deduction::create(
                 [
                     'employee_id' => $departure->employee_id,
-                    'amount' => ($departure->employee->employee->salary / ($requiredWorkHours *  (Carbon::now()->daysInMonth-4) )) * ($requiredWorkHours)
+                    'amount' => ($departure->employee->employee->salary / ($requiredWorkHours * ((Carbon::now()->daysInMonth - 4)*$requiredWorkHours) )) * ($requiredWorkHours)
                 ]
             );
             $departure->deductions_id = $deduction->id;

@@ -108,7 +108,7 @@ class AttendanceController extends Controller
             $deduction = Deduction::create(
                 [
                     'employee_id' => $attendance->employee_id,
-                    'amount' => ($attendance->employee->employee->salary /  (Carbon::now()->daysInMonth-4)) * ($requiredWorkHours - $actualWorkHours)
+                    'amount' => ($attendance->employee->employee->salary /  ((Carbon::now()->daysInMonth - 4)*$requiredWorkHours)) * ($requiredWorkHours - $actualWorkHours)
                 ]
             );
             $attendance->deductions_id = $deduction->id;
@@ -147,7 +147,7 @@ class AttendanceController extends Controller
                 ['id' => $attendance->deductions_id],
                 [
                     'employee_id' => $attendance->employee_id,
-                    'amount' => ($attendance->employee->employee->salary /  (Carbon::now()->daysInMonth-4)) * ($requiredWorkHours - $actualWorkHours)
+                    'amount' => ($attendance->employee->employee->salary /  ((Carbon::now()->daysInMonth - 4)*$requiredWorkHours) ) * ($requiredWorkHours - $actualWorkHours)
                 ]
             );
             $attendance->deductions_id = $deduction->id;

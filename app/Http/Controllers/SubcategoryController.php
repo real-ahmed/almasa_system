@@ -16,7 +16,7 @@ class SubcategoryController extends Controller
             $subcategories = Subcategory::orderBy('id','desc')->paginate(getPaginate());
 
         }
-        $categories = Category::orderBy('id','desc')->paginate(getPaginate());
+        $categories = Category::orderBy('id','desc')->get();
         $pageTitle = 'الانواع الفرعية لقطع الغيار';
 
         return view('subcategory.index',compact('pageTitle','subcategories','categories'));
