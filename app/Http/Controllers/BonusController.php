@@ -14,6 +14,8 @@ class BonusController extends Controller
 
         $pageTitle = "سجل البونص";
         $search = $request->input('search');
+        $fromDate = date('Y-m-d 00:00:00', strtotime(request()->input('from_date')));
+        $toDate = date('Y-m-d 23:59:59', strtotime(request()->input('to_date')));
         $bonusQuery = Bonus::query();
 
         if ($search) {
@@ -30,6 +32,15 @@ class BonusController extends Controller
         if (!auth()->user()->isreceptionist) {
             $bonusQuery->where('employee_id', auth()->user()->id);
         }
+
+        if ($fromDate && $toDate) {
+            $bonusQuery->whereBetween('created_at', [$fromDate, $toDate]);
+        }
+
+        if (!auth()->user()->isreceptionist) {
+            $bonusQuery->where('employee_id', auth()->user()->id);
+        }
+
         $bonuses = $bonusQuery->orderBy('id', 'desc')->paginate(getPaginate());
         return view('bonus.index', compact('pageTitle', 'bonuses'));
     }

@@ -7,6 +7,33 @@
             <div class="toolbar row mb-3">
                 <div class="col">
                     <form class="form-inline" action="{{route('component.all')}}">
+                        <div class="form-group">
+                            <select name="brand_id" id="brand_id" class="form-control">
+                                <option value="" selected>@lang("الرجاء اختيار البراند")</option>
+                                @foreach($brands as $brand)
+                                    <option  @selected($brand->id == request()->input('brand_id') ) value="{{$brand->id}}">{{$brand->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <select  name="category_id" id="category_id" class="form-control">
+                                <option value="" selected>@lang("الرجاء اختيار التصنيف الاساسي")</option>
+                                @foreach($categories as $category)
+                                    <option
+                                        @selected($category->id == request()->input('category_id') ) value="{{$category->id}}">{{$category->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <select name="subcategory_id" id="subcategory_id" class="form-control">
+                                <option value="" selected>@lang("بدون تصنيف فرعي")</option>
+                                @foreach($subcategories as $subcategory)
+                                    <option @if($subcategory->id == request()->input('subcategory_id')) selected @endif value="{{$subcategory->id}}">{{$subcategory->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
 
                         <div class="form-row">
                             <div class="input-group col-auto">
@@ -154,10 +181,15 @@
                 fetchPrintDetails();
             });
 
+            var urlParams = new URLSearchParams(window.location.search);
             function fetchPrintDetails() {
+                var brandId = urlParams.get('brand_id');
+                var categoryId = urlParams.get('category_id');
+                var subcategoryId = urlParams.get('subcategory_id');
+                var search = urlParams.get('search');
 
                 $.ajax({
-                    url: `${printAction}`,
+                    url: `${printAction}?brand_id=${brandId}&category_id=${categoryId}&subcategory_id=${subcategoryId}&search=${search}`,
                     type: 'GET',
                     success: function (response) {
                         var htmlContent = response.content;

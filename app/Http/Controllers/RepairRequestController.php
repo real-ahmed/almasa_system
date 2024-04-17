@@ -27,6 +27,9 @@ class RepairRequestController extends Controller
 
         $search = $request->input('search');
 
+        $fromDate = date('Y-m-d 00:00:00', strtotime(request()->input('from_date')));
+        $toDate = date('Y-m-d 23:59:59', strtotime(request()->input('to_date')));
+
         $screensQuery = Screen::query();
 
         if ($search) {
@@ -56,6 +59,10 @@ class RepairRequestController extends Controller
 //        if (!auth()->user()->isreceptionist) {
 //            $screensQuery->where('engineer_maintenance_id', auth()->user()->id);
 //        }
+
+        if ($fromDate && $toDate) {
+            $screensQuery->whereBetween('created_at', [$fromDate, $toDate]);
+        }
 
         $screens = $screensQuery->where('status', $type ? '<>' : '=', 0)
             ->orderBy('id', 'desc')

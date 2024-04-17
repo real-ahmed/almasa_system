@@ -9,14 +9,52 @@
                     <form class="form-inline" action="{{route('deduction.all')}}">
 
                         <div class="form-row">
-                            <div class="input-group col-auto">
-                                <input type="text" class="form-control" value="{{request()->input('search')}}"
-                                       name="search" placeholder="@lang("بحث")" aria-describedby="button-addon2">
-                                <div class="input-group-append">
-                                    <button class="btn btn-primary" type="submit" id="button-addon2"><i
-                                            class="fa-solid fa-magnifying-glass"></i></button>
+                            <div class="form-group mb-3">
+                                <label for="from_date" class="col-form-label">@lang("من")</label>
+
+                                <div class="input-group">
+                                    <input type="text" class="form-control drgpicker" id="date-input1"
+                                           name="from_date"
+                                           value="{{request()->input('to_date') ?date('m/d/Y',strtotime(request()->input('from_date'))): date('m/d/Y')}}"
+                                           aria-describedby="button-addon2">
+                                    <div class="input-group-append">
+                                        <div class="input-group-text" id="button-addon-date"><span
+                                                class="fa-solid fa-calendar-days"></span></div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+
+                            <div class="form-group mb-3">
+                                <label for="from_date" class="col-form-label">@lang("الى")</label>
+
+                                <div class="input-group">
+                                    <input type="text" class="form-control drgpicker" id="date-input1"
+                                           name="to_date"
+                                           value="{{request()->input('to_date')?date('m/d/Y', strtotime(request()->input('to_date'))): date('m/d/Y')}}"
+                                           aria-describedby="button-addon2">
+                                    <div class="input-group-append">
+                                        <div class="input-group-text" id="button-addon-date"><span
+                                                class="fa-solid fa-calendar-days"></span></div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            <div class="form-group mb-3">
+
+                                <div class="input-group col-auto">
+                                    <input type="text" class="form-control" value="{{request()->input('search')}}"
+                                           name="search" placeholder="@lang("بحث")" aria-describedby="button-addon2">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-primary" type="submit" id="button-addon2"><i
+                                                class="fa-solid fa-magnifying-glass"></i></button>
+                                    </div>
                                 </div>
                             </div>
+
                         </div>
                     </form>
                 </div>

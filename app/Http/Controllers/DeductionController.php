@@ -14,6 +14,8 @@ class DeductionController extends Controller
 
         $pageTitle = "سجل الخصم";
         $search = $request->input('search');
+        $fromDate = date('Y-m-d 00:00:00', strtotime(request()->input('from_date')));
+        $toDate = date('Y-m-d 23:59:59', strtotime(request()->input('to_date')));
         $deductionQuery = Deduction::query();
 
         if ($search) {
@@ -30,6 +32,12 @@ class DeductionController extends Controller
         if (!auth()->user()->isreceptionist) {
             $deductionQuery->where('employee_id', auth()->user()->id);
         }
+
+        if ($fromDate && $toDate) {
+            $deductionQuery->whereBetween('created_at', [$fromDate, $toDate]);
+        }
+
+
         $deductions = $deductionQuery->orderBy('id', 'desc')->paginate(getPaginate());
         return view('deduction.index', compact('pageTitle', 'deductions'));
     }
