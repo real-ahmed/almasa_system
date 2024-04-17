@@ -33,7 +33,7 @@ class BonusController extends Controller
             $bonusQuery->where('employee_id', auth()->user()->id);
         }
 
-        if ($fromDate && $toDate) {
+        if (request()->input('from_date') && request()->input('to_date')) {
             $bonusQuery->whereBetween('created_at', [$fromDate, $toDate]);
         }
 

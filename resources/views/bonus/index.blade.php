@@ -92,7 +92,7 @@
                                 <td>{{$bonus->employee->name}}</td>
                             @endif
                             <td>{{$bonus->amount}}</td>
-                            <td>{{$bonus->screenBonus->screen->code ?? '-'}}</td>
+                            <td>{{$bonus->screenBonus->screen->code ? $bonus->screenBonus->screen->brand->name ."-". $bonus->screenBonus->screen->repairs->first()->customer->name : '-'}}</td>
                             <td>{{date_format($bonus->created_at,'m/d/y h:iA')}}</td>
                             @if(auth()->user()->isreceptionist)
 

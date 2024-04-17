@@ -7,40 +7,42 @@
                     <form class="form-inline" action="{{route('repair.request.all',['type'=>$type])}}">
 
                         <div class="form-row">
-                            <div class="form-group mb-3">
-                                <label for="from_date" class="col-form-label">@lang("من")</label>
+                            @if($type == 1 )
+                                <div class="form-group mb-3">
+                                    <label for="from_date" class="col-form-label">@lang("من")</label>
 
-                                <div class="input-group">
-                                    <input type="text" class="form-control drgpicker" id="date-input1"
-                                           name="from_date"
-                                           value="{{request()->input('to_date') ?date('m/d/Y',strtotime(request()->input('from_date'))): date('m/d/Y')}}"
-                                           aria-describedby="button-addon2">
-                                    <div class="input-group-append">
-                                        <div class="input-group-text" id="button-addon-date"><span
-                                                class="fa-solid fa-calendar-days"></span></div>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control drgpicker" id="date-input1"
+                                               name="from_date"
+                                               value="{{request()->input('to_date') ?date('m/d/Y',strtotime(request()->input('from_date'))): date('m/d/Y')}}"
+                                               aria-describedby="button-addon2">
+                                        <div class="input-group-append">
+                                            <div class="input-group-text" id="button-addon-date"><span
+                                                    class="fa-solid fa-calendar-days"></span></div>
+                                        </div>
                                     </div>
+
+
                                 </div>
+                                <div class="form-group mb-3">
+                                    <label for="from_date" class="col-form-label">@lang("الى")</label>
 
-
-                            </div>
-
-
-                            <div class="form-group mb-3">
-                                <label for="from_date" class="col-form-label">@lang("الى")</label>
-
-                                <div class="input-group">
-                                    <input type="text" class="form-control drgpicker" id="date-input1"
-                                           name="to_date"
-                                           value="{{request()->input('to_date')?date('m/d/Y', strtotime(request()->input('to_date'))): date('m/d/Y')}}"
-                                           aria-describedby="button-addon2">
-                                    <div class="input-group-append">
-                                        <div class="input-group-text" id="button-addon-date"><span
-                                                class="fa-solid fa-calendar-days"></span></div>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control drgpicker" id="date-input1"
+                                               name="to_date"
+                                               value="{{request()->input('to_date')?date('m/d/Y', strtotime(request()->input('to_date'))): date('m/d/Y')}}"
+                                               aria-describedby="button-addon2">
+                                        <div class="input-group-append">
+                                            <div class="input-group-text" id="button-addon-date"><span
+                                                    class="fa-solid fa-calendar-days"></span></div>
+                                        </div>
                                     </div>
+
+
                                 </div>
+                            @endif
 
 
-                            </div>
                             <div class="form-group mb-3">
 
                                 <div class="input-group col-auto">
@@ -92,12 +94,12 @@
                             <td><?php echo $screen->statusName ?></td>
                             @if($type == 0 || auth()->user()->isreceptionist)
 
-                            <td>
-                                <a
-                                    href="{{route('repair.request.model',$screen->id)}}"
-                                    class="btn btn-primary edit">
-                                    <i class="fa-solid fa-gears"></i></a>
-                            </td>
+                                <td>
+                                    <a
+                                        href="{{route('repair.request.model',$screen->id)}}"
+                                        class="btn btn-primary edit">
+                                        <i class="fa-solid fa-gears"></i></a>
+                                </td>
                             @endif
 
                         </tr>
@@ -113,8 +115,6 @@
             </div>
         </div>
     </div>
-
-
 
 @endsection
 

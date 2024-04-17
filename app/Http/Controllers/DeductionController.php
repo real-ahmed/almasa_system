@@ -33,7 +33,7 @@ class DeductionController extends Controller
             $deductionQuery->where('employee_id', auth()->user()->id);
         }
 
-        if ($fromDate && $toDate) {
+        if (request()->input('from_date') && request()->input('to_date')) {
             $deductionQuery->whereBetween('created_at', [$fromDate, $toDate]);
         }
 

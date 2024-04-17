@@ -60,7 +60,7 @@ class RepairRequestController extends Controller
 //            $screensQuery->where('engineer_maintenance_id', auth()->user()->id);
 //        }
 
-        if ($fromDate && $toDate) {
+        if (request()->input('from_date') && request()->input('to_date')) {
             $screensQuery->whereBetween('created_at', [$fromDate, $toDate]);
         }
 
