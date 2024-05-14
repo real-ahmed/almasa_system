@@ -33,7 +33,7 @@
 
 
             <div class="btn-box w-100 ">
-                <a href="{{route("component.all")}}" type="button"
+                <a href="{{route("partition.all")}}" type="button"
                    class="btn mb-2 btn-primary btn-lg btn-block">
                     <span class="small">@lang('قطع الغيار')</span>
                 </a>

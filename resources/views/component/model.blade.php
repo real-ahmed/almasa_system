@@ -1,4 +1,5 @@
-<div class="modal fade" id="componentModal" tabindex="-1" role="dialog" aria-labelledby="varyModalLabel" style="display: none;" aria-hidden="true">
+<div class="modal fade" id="componentModal" tabindex="-1" role="dialog" aria-labelledby="varyModalLabel"
+     style="display: none;" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -21,7 +22,7 @@
 
                     <div class="form-group">
                         <label for="recipient-name" class="col-form-label">@lang("البراند")</label>
-                        <select  name="brand_id" id="brand_id" class="form-control">
+                        <select name="brand_id" id="brand_id" class="form-control">
                             <option value="" selected>@lang("الرجاء اختيار البراند")</option>
                             @foreach($brands as $brand)
                                 <option value="{{$brand->id}}">{{$brand->name}}</option>
@@ -41,14 +42,26 @@
 
                     <div class="form-group">
                         <label for="recipient-name" class="col-form-label">@lang("التصنيف الفرعي")</label>
-                        <select  name="subcategory_id" id="subcategory_id" class="form-control">
+                        <select name="subcategory_id" id="subcategory_id" class="form-control">
                             <option value="" selected>@lang("بدون تصنيف فرعي")</option>
+                        </select>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">@lang("القسم")</label>
+                        <select required name="partition_id" id="partition_id" class="form-control">
+                            @foreach($partitions as $partition)
+                                <option
+                                    @selected( $partition->id == $partition_id) value="{{$partition->id}}">{{$partition->name}}</option>
+                            @endforeach
                         </select>
                     </div>
 
                     <div class="form-group">
                         <label for="auto_request_quantity">@lang("الكمية لانشاء طلب تلقائي")</label>
-                        <input  type="number"  min="0" id="auto_request_quantity" name="auto_request_quantity" class="form-control">
+                        <input type="number" min="0" id="auto_request_quantity" name="auto_request_quantity"
+                               class="form-control">
                     </div>
 
                     <div class="form-group">
@@ -58,7 +71,8 @@
 
 
                     <div class="modal-footer">
-                        <button type="button" class="btn mb-2 btn-secondary" data-dismiss="modal">@lang("اغلاق")</button>
+                        <button type="button" class="btn mb-2 btn-secondary"
+                                data-dismiss="modal">@lang("اغلاق")</button>
                         <button type="submit" class="btn mb-2 btn-primary">@lang("حفظ")</button>
                     </div>
                 </form>
@@ -81,7 +95,7 @@
                 $.ajax({
                     url: '{{ route('warehouse.employee.subcategory.getSubcategories') }}',
                     method: 'GET',
-                    data: { category_id: categoryId },
+                    data: {category_id: categoryId},
                     success: function (data) {
                         // Clear existing options
                         $('#subcategory_id option:not(:first-child)').remove();

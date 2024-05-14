@@ -9,7 +9,7 @@ class ScreenComponent extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['id', 'name', 'code', 'category_id', 'subcategory_id', 'selling_price', 'brand_id', 'auto_request_quantity'];
+    protected $fillable = ['id', 'name', 'code', 'category_id', 'subcategory_id', 'selling_price', 'brand_id', 'auto_request_quantity','storage_partition_id'];
 
     public static function requestedItems()
     {

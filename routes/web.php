@@ -44,8 +44,14 @@ Route::middleware(['auth'])->group(function () {
         });
 
         Route::controller("ScreenComponentController")->name("component.")->group(function () {
-            Route::get('component', 'index')->name('all');
+            Route::get('component/{StoragePartition?}', 'index')->name('all');
         });
+
+
+        Route::controller("StoragePartitionController")->name("partition.")->group(function () {
+            Route::get('partition', 'index')->name('all');
+        });
+
 
         Route::middleware(['admin'])->name("admin.")->group(function () {
 //            Route::controller('GeneralSettingController')->name("setting.")->group(function () {
@@ -66,6 +72,11 @@ Route::middleware(['auth'])->group(function () {
 
 
             });
+
+            Route::controller("StoragePartitionController")->name("partition.")->group(function () {
+                Route::get('partition/delete/{id?}', 'delete')->name('delete');
+            });
+
 //            Route::controller("BrandController")->name("brand.")->group(function () {
 //                Route::get('brand/{type}', 'index')->name('all');
 //                Route::post('brand/{type}/save/{id?}', 'save')->name('save');
@@ -177,7 +188,6 @@ Route::middleware(['auth'])->group(function () {
 
 
         Route::middleware(['receptionist'])->name("receptionist.")->group(function () {
-
 
 
             Route::controller("AttendanceController")->name("attendance.")->group(function () {
@@ -367,6 +377,10 @@ Route::middleware(['auth'])->group(function () {
             Route::controller("ScreenComponentController")->name("component.")->group(function () {
                 Route::post('component/save/{id?}', 'save')->name('save');
                 Route::get('component/print', 'printAll')->name('print');
+            });
+
+            Route::controller("StoragePartitionController")->name("partition.")->group(function () {
+                Route::post('partition/save/{id?}', 'save')->name('save');
             });
 
 

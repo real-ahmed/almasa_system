@@ -5,13 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\ScreenComponent;
+use App\Models\StoragePartition;
 use App\Models\Subcategory;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 
 class ScreenComponentController extends Controller
 {
-    public function index(Request $request)
+    public function index(Request $request, $partition_id = null)
     {
         $pageTitle = 'قطع الغيار';
         $search = $request->input('search');
@@ -21,7 +22,9 @@ class ScreenComponentController extends Controller
 
         // Fetch components query
         $componentsQuery = ScreenComponent::orderBy('id', 'desc');
-
+        if ($partition_id) {
+            $componentsQuery = $componentsQuery->where('storage_partition_id', $partition_id);
+        }
         // Apply search filter
         if ($search) {
             $componentsQuery->where(function ($query) use ($search) {
@@ -73,7 +76,9 @@ class ScreenComponentController extends Controller
         // Fetch brands
         $brands = Brand::where('type', 1)->orderBy('id', 'desc')->get();
 
-        return view('component.index', compact('pageTitle', 'components', 'categories', 'subcategories', 'brands'));
+        $partitions = StoragePartition::get();
+
+        return view('component.index', compact('pageTitle', 'components', 'categories', 'subcategories', 'brands', 'partitions', 'partition_id'));
     }
 
     public function save(Request $request, $id = 0)
@@ -82,6 +87,7 @@ class ScreenComponentController extends Controller
             'name' => 'required|string',
             'code' => 'required|string',
             'category_id' => 'required|exists:categories,id',
+            'partition_id' => 'required|exists:storage_partitions,id',
             'selling_price' => 'required|numeric',
             'auto_request_quantity' => 'nullable|numeric',
         ]);
@@ -94,6 +100,7 @@ class ScreenComponentController extends Controller
                 'code' => $request->code,
                 'category_id' => $request->category_id,
                 'subcategory_id' => $request->subcategory_id,
+                'storage_partition_id' => $request->partition_id,
                 'auto_request_quantity' => $request->auto_request_quantity,
                 'brand_id' => $request->brand_id,
                 'selling_price' => $request->selling_price

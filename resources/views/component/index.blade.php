@@ -6,7 +6,8 @@
         <div class="card-body">
             <div class="toolbar row mb-3">
                 <div class="col">
-                    <form class="form-inline" action="{{route('component.all')}}">
+                    <form class="form-inline" action="{{ url()->current() }}">
+
                         <div class="form-group">
                             <select name="brand_id" id="brand_id" class="form-control">
                                 <option value="" selected>@lang("الرجاء اختيار البراند")</option>
@@ -144,7 +145,7 @@
                 </table>
                 <nav aria-label="Table Paging" class="mb-0 text-muted">
                     @if ($components->hasPages())
-                        {{ $components->links() }}
+                        {{ $components->appends(request()->query())->links() }}
                     @endif
                 </nav>
             </div>
