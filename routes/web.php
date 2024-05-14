@@ -376,7 +376,7 @@ Route::middleware(['auth'])->group(function () {
             });
             Route::controller("ScreenComponentController")->name("component.")->group(function () {
                 Route::post('component/save/{id?}', 'save')->name('save');
-                Route::get('component/print', 'printAll')->name('print');
+                Route::get('print/component/{partition_id?}', 'printAll')->name('print');
             });
 
             Route::controller("StoragePartitionController")->name("partition.")->group(function () {

@@ -125,17 +125,37 @@ class ScreenComponentController extends Controller
     }
 
 
-    public function printAll(Request $request)
+    public function printAll(Request $request, $partition_id = null)
     {
+        $search = $request->input('search');
         $categoryId = $request->input('category_id');
         $brandId = $request->input('brand_id');
         $subcategoryId = $request->input('subcategory_id');
 
         // Fetch components query
         $componentsQuery = ScreenComponent::orderBy('id', 'desc');
+        if ($partition_id) {
+            $componentsQuery = $componentsQuery->where('storage_partition_id', $partition_id);
+        }
+        // Apply search filter
+        if ($search != 'null') {
+            $componentsQuery->where(function ($query) use ($search) {
+                $query->where('name', 'like', '%' . $search . '%')
+                    ->orWhere('code', 'like', '%' . $search . '%')
+                    ->orWhereHas('category', function ($query) use ($search) {
+                        $query->where('name', 'like', '%' . $search . '%');
+                    })
+                    ->orWhereHas('subcategory', function ($query) use ($search) {
+                        $query->where('name', 'like', '%' . $search . '%');
+                    })
+                    ->orWhereHas('brand', function ($query) use ($search) {
+                        $query->where('name', 'like', '%' . $search . '%');
+                    });
+            });
+        }
 
         // Apply category filter
-        if ($categoryId) {
+        if ($categoryId  != 'null') {
             $componentsQuery->whereHas('subcategory', function ($query) use ($categoryId) {
                 $query->whereHas('category', function ($query) use ($categoryId) {
                     $query->where('id', $categoryId);
@@ -144,14 +164,16 @@ class ScreenComponentController extends Controller
         }
 
         // Apply brand filter
-        if ($brandId) {
+        if ($brandId  != 'null') {
             $componentsQuery->where('brand_id', $brandId);
         }
 
         // Apply subcategory filter
-        if ($subcategoryId) {
+        if ($subcategoryId  != 'null') {
             $componentsQuery->where('subcategory_id', $subcategoryId);
         }
+
+
 
         // Fetch products
         $products = $componentsQuery->get();

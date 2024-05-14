@@ -168,7 +168,7 @@
 
             var saveAction = `{{ route('item.component.save') }}`;
             var deleteAction = `{{ route('admin.component.delete') }}`;
-            var printAction = `{{ route('item.component.print') }}`;
+            var printAction = `{{ route('item.component.print' , $partition_id) }}`;
 
             $('.new').click(function () {
 
@@ -194,6 +194,7 @@
                     type: 'GET',
                     success: function (response) {
                         var htmlContent = response.content;
+                        console.log(response)
 
                         // Set the content of the modal body to an iframe with the generated HTML
                         loaderModal.find('.print').html('<iframe hidden="" ></iframe>');
