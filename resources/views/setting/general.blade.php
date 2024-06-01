@@ -32,7 +32,8 @@
 
                         <div class="form-group mb-3">
                             <label for="insurance_term">@lang("عبارة الضمان")</label>
-                            <input type="text" value="{{$general->insurance_term}}" id="insurance_term" name="insurance_term"
+                            <input type="text" value="{{$general->insurance_term}}" id="insurance_term"
+                                   name="insurance_term"
                                    class="form-control">
                         </div>
 
@@ -47,15 +48,11 @@
 
                         <div class="form-group mb-3">
                             <label for="simpleinput">@lang("رقم الهاتف الاول")</label>
-                            <input type="phone" value="{{$general->phone}}" id="phone" name="phone"
-                                   class="form-control input-phoneeg">
+                            <textarea id="phone" name="phone"
+                                      class="form-control">@foreach($general->phone as $phone){{ $phone . "\n" }}@endforeach</textarea>
                         </div>
-                        <div class="form-group mb-3">
-                            <label for="simpleinput">@lang("رقم الهاتف الثاني")</label>
-                            <input type="phone" value="{{$general->sac_phone}}" id="phone" name="sac_phone"
-                                   class="form-control input-phoneeg">
-                        </div>
-                        
+
+
                         <div class="form-group mb-3">
                             <label for="simpleinput">@lang("كلمة المرور الافتراضية")</label>
                             <input type="text" value="{{$general->default_new_user_pass}}" id="password" name="password"
@@ -73,8 +70,18 @@
                                     </textarea>
                         </div>
                     </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group ">
+                            <label for="deliver_invoice_policy">@lang("شروط فاتورة التسليم")</label>
+                            <textarea id="deliver_invoice_policy" name="deliver_invoice_policy"
+                                      class="form-control">
+                                <?php echo $general->deliver_invoice_policy ?>
+                                    </textarea>
+                        </div>
+                    </div>
                 </div>
-                    <button type="submit" class="btn btn-primary">@lang("حفظ التغير")</button>
+                <button type="submit" class="btn btn-primary">@lang("حفظ التغير")</button>
             </form>
         </div>
     </div>
@@ -164,6 +171,7 @@
         bkLib.onDomLoaded(function () {
             // Initialize NicEdit
             var nicInstance = new nicEditor({fullPanel: true}).panelInstance('invoice_policy');
+            var nicInstance0 = new nicEditor({fullPanel: true}).panelInstance('deliver_invoice_policy');
 
         });
     </script>

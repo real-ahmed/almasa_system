@@ -32,10 +32,14 @@ class GeneralSettingController extends Controller
         $general->site_name = $request->site_name;
         $general->invoice_name = $request->invoice_name;
         $general->address = $request->address;
-        $general->phone = $request->phone;
-        $general->sac_phone = $request->sac_phone;
+
+        $phonesInput = $request->phone; // Assuming 'phones' is the name of the textarea
+        $phonesArray = preg_split('/\r\n|\r|\n/', $phonesInput);
+        $general->phone = $phonesArray;
+
         $general->money_sign = $request->money_sign;
         $general->invoice_policy = $request->invoice_policy;
+        $general->deliver_invoice_policy = $request->deliver_invoice_policy;
         $general->insurance_term = $request->insurance_term;
         $general->default_new_user_pass = $request->password;
         $general->save();

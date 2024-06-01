@@ -33,7 +33,9 @@
     <a class="navbar-brand mx-auto mt-2 flex-fill text-center" href="{{route('home')}}">
         <img class="w-100" src="{{getImage(getFilePath('logoIcon') .'/site_logo.png')}}" alt="@lang('image')">
     </a>
-    <p >{{$general->phone}}-{{$general->sac_phone}}</p>
+    <p >@foreach($general->phone as $index => $phone)
+            {{ $phone }}@if($index < count($general->phone) - 1)- @endif
+        @endforeach</p>
 
 </div>
 {{--    <form class="form-inline mr-auto searchform text-muted">--}}

@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class GeneralSetting extends Model
 {
     use HasFactory;
+    protected $casts = [
+        'phone' => 'array',
+    ];
 
     public function scopeSiteName($query, $pageTitle)
     {

@@ -5,14 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        @media print
-        {
-            html
-            {
+        @media print {
+            html {
                 zoom: 65%;
             }
 
         }
+
         body {
             font-family: 'Arial', sans-serif;
 
@@ -51,15 +50,15 @@
             border: none;
             cursor: pointer;
         }
-        .inputs-filed
-        {
+
+        .inputs-filed {
             display: flex;
             align-items: center;
 
 
         }
 
-        .inputs-filed input{
+        .inputs-filed input {
             border: none;
             border-bottom: 1px dotted #000;
             width: 80%;
@@ -68,16 +67,18 @@
 
 
         }
-        .inputs-filed input:focus{
+
+        .inputs-filed input:focus {
             border: none;
             border-bottom: 1px dotted #000;
         }
-        .inputs-filed input::placeholder{
+
+        .inputs-filed input::placeholder {
             display: none;
 
         }
 
-        .footer_sec{
+        .footer_sec {
             display: flex;
             align-items: center;
             justify-content: space-around;
@@ -88,7 +89,8 @@
             margin-top: 20px;
             text-align: center;
         }
-        .footer input{
+
+        .footer input {
             border: none;
             border-bottom: 1px dotted #000;
             width: 80%;
@@ -97,30 +99,32 @@
 
         }
 
-        .footer input:focus{
+        .footer input:focus {
             border: none;
             border-bottom: 1px dotted #000;
         }
-        .footer input::placeholder{
+
+        .footer input::placeholder {
             display: none;
 
         }
 
-        .footer button{
+        .footer button {
             width: 200px;
             padding: 15px 35px;
             margin-bottom: 40px;
         }
-        .footer  label {
+
+        .footer label {
             font-weight: bold !important;
         }
 
 
-        .inputs-filed  label {
+        .inputs-filed label {
             font-weight: bold !important;
         }
 
-        p{
+        p {
             font-weight: bold;
         }
 
@@ -129,7 +133,7 @@
             height: 140px;
             margin-top: 20px;
             /* background-color: #3498db; */
-            border: 2px solid  #b9141d;
+            border: 2px solid #b9141d;
 
             border-radius: 50%;
             display: flex;
@@ -176,8 +180,8 @@
             cursor: pointer;
             margin-top: 20px;
         }
-        .input-table_one
-        {
+
+        .input-table_one {
             border: none;
             border-bottom: 1px dotted #000;
             width: 100%;
@@ -185,8 +189,8 @@
             box-shadow: none;
 
         }
-        .input-table_one:focus
-        {
+
+        .input-table_one:focus {
             border: none;
             border-bottom: 1px dotted #000;
         }
@@ -202,9 +206,11 @@
 <div class="container">
     <div style="display: flex; align-items: center; justify-content: center; flex-direction: column;">
         <img class="logo" src="{{ getImage(getFilePath('logoIcon').'/invoice_logo.png', '?'.time()) }}" alt="">
-        <h2 style="background: #b9141d; width: 200px ; padding: 15px 30px; color: #fff; border-radius: 10px; margin: 5px;"> كارت الاستلام  </h2>
+        <h2 style="background: #b9141d; width: 200px ; padding: 15px 30px; color: #fff; border-radius: 10px; margin: 5px;">
+            كارت الاستلام </h2>
 
-        <p style="border: 3px solid #000; padding: 10px 40px; border-radius: 10px; font-weight: 500; margin-top: 5px;">تضمن الاحترافيه لخدمات الصيانه الاعمال وقطع الغيار التي تمت بالجهاز</p>
+        <p style="border: 3px solid #000; padding: 10px 40px; border-radius: 10px; font-weight: 500; margin-top: 5px;">
+            تضمن الاحترافيه لخدمات الصيانه الاعمال وقطع الغيار التي تمت بالجهاز</p>
     </div>
 
 
@@ -240,7 +246,7 @@
 
         <table>
             <tr style="background-color: #ec323b;">
-                                <th style="color: #fff;">كود الصيانة</th>
+                <th style="color: #fff;">كود الصيانة</th>
 
                 <th style="color: #fff;">اسم الجهاز</th>
                 <th style="color: #fff;">الموديل</th>
@@ -249,7 +255,7 @@
             </tr>
             @foreach($repair->screens as $screen)
                 <tr>
-                                        <td>{{ $screen->code }}</td>
+                    <td>{{ $screen->code }}</td>
 
                     <td>{{ $screen->brand->name ?? null }}</td>
                     <td>{{ $screen->model }}</td>
@@ -262,25 +268,25 @@
         </table>
 
 
-
-
     </form>
     <br>
 
     <div style=" position: absolute;
             bottom: 0px;
-            left: 0px; width: 100%;" >
+            left: 0px; width: 100%;">
 
 
-        <div style=" display: flex; align-items: right; justify-content: center; " >
-            <div style="border: 3px solid #000; padding: 20px 40px ; display: flex; align-items: right; justify-content: center; flex-direction: column;  border-radius: 10px; font-weight: 500; margin-top: 10px;">
-                <h5 style="font-size: 15px; font-weight: bold; margin: 0 !important;">عمالئنا الكرام .. لتجنب حدوث أي سوء تفاهم يرجي قراءة الشروط التالية :</h5>
+        <div style=" display: flex; align-items: right; justify-content: center; ">
+            <div
+                style="border: 3px solid #000; padding: 20px 40px ; display: flex; align-items: right; justify-content: center; flex-direction: column;  border-radius: 10px; font-weight: 500; margin-top: 10px;">
+                <h5 style="font-size: 15px; font-weight: bold; margin: 0 !important;">عمالئنا الكرام .. لتجنب حدوث أي
+                    سوء تفاهم يرجي قراءة الشروط التالية :</h5>
                 {!! $general->invoice_policy !!}
 
 
             </div>
         </div>
-        <div  class="footer_sec">
+        <div class="footer_sec">
             <div class="footer">
                 <label for="customerSignature">توقيع العميل:</label>
                 <input type="text" id="customerSignature" name="customerSignature" required>
@@ -289,7 +295,7 @@
             <div class="footer">
                 <label for="centerSeal">ختم المركز:</label>
                 <!-- <input type="text" id="centerSeal" name="centerSeal" required> -->
-                <div  class="circle">
+                <div class="circle">
 
                 </div>
 
@@ -301,13 +307,16 @@
 
             <p class="footer">نشكركم لاختياركم الماسة ونعدكم دائما بتقديم الافضل</p>
 
-            <img src="{{ getImage(getFilePath('logoIcon').'/QR.jpg', '?'.time()) }}" style="width: 60px; margin: 5px;" alt="">
+            <img src="{{ getImage(getFilePath('logoIcon').'/QR.jpg', '?'.time()) }}" style="width: 60px; margin: 5px;"
+                 alt="">
         </div>
         <hr style="font-weight: bold ; border-top: 5px solid #b9141d; margin: 0 !important;">
         <hr style="font-weight: bold ; border-top: 1px solid #b9141d; margin: 0 !important; ">
         <div class="footer_sec" style="margin-top: 0 !important; justify-content:space-between;">
             <p style="font-weight: normal;">{{$general->address}}</p>
-            <p style="font-weight: normal;">{{$general->phone}}-{{$general->sac_phone}}</p>
+            <p style="font-weight: normal;">@foreach($general->phone as $index => $phone)
+                    {{ $phone }}@if($index < count($general->phone) - 1)-@endif
+                @endforeach</p>
 
         </div>
 

@@ -260,7 +260,8 @@
 
         <div class="footer_sec" style="margin-bottom: -1px !important; justify-content:space-between;">
             <p style="font-size: 15px; font-weight: normal;">برجاء مراجعة الشروط خلف الفاتورة</p>
-            <img src="{{ getImage(getFilePath('logoIcon').'/QR.jpg', '?'.time()) }}" style="width: 60px; margin: 5px;" alt="">
+            <img src="{{ getImage(getFilePath('logoIcon').'/QR.jpg', '?'.time()) }}" style="width: 60px; margin: 5px;"
+                 alt="">
 
         </div>
         <hr style="font-weight: bold ; border-top: 5px solid #b9141d; margin: 0 !important;">
@@ -268,7 +269,11 @@
         <div class="footer_sec"
              style="margin-top: 0 !important; margin-bottom: 0 !important; justify-content:space-between;">
             <p style="font-size: 20px; font-weight: normal;">{{$general->address}}</p>
-            <p style="font-size: 20px; font-weight: normal;">{{$general->phone}}-{{$general->sac_phone}}</p>
+            <p style="font-size: 20px; font-weight: normal;">@foreach($general->phone as $index => $phone)
+                    {{ $phone }}@if($index < count($general->phone) - 1)
+                        -
+                    @endif
+                @endforeach</p>
         </div>
     </div>
 </div>

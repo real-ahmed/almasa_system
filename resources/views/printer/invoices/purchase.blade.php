@@ -69,7 +69,9 @@
         <div class="company-info">
             <h3>{{$general->invoice_name}}</h3>
             <p>{{$general->address}}</p>
-            <p>{{$general->phone}}</p>
+            <p>@foreach($general->phone as $index => $phone)
+                    {{ $phone }}@if($index < count($general->phone) - 1)-@endif
+                @endforeach</p>
 
         </div>
         <img src="{{ getImage(getFilePath('logoIcon').'/invoice_logo.png', '?'.time()) }}" alt="شعار الشركة">
