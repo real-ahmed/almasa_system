@@ -12,7 +12,7 @@
 
         @media print {
             html {
-                zoom: 55%;
+                zoom: 50%;
             }
 
         }
