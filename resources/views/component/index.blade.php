@@ -12,14 +12,22 @@
                             <select name="brand_id" id="brand_id" class="form-control">
                                 <option value="" selected>@lang("الرجاء اختيار البراند")</option>
                                 @foreach($brands as $brand)
+<<<<<<< HEAD
+                                    <option  @selected($brand->id == request()->input('brand_id') ) value="{{$brand->id}}">{{$brand->name}}</option>
+=======
                                     <option
                                         @selected($brand->id == request()->input('brand_id') ) value="{{$brand->id}}">{{$brand->name}}</option>
+>>>>>>> refs/remotes/origin/master
                                 @endforeach
                             </select>
                         </div>
 
                         <div class="form-group">
+<<<<<<< HEAD
+                            <select  name="category_id" id="category_id" class="form-control">
+=======
                             <select name="category_id" id="category_id" class="form-control">
+>>>>>>> refs/remotes/origin/master
                                 <option value="" selected>@lang("الرجاء اختيار التصنيف الاساسي")</option>
                                 @foreach($categories as $category)
                                     <option
@@ -32,8 +40,12 @@
                             <select name="subcategory_id" id="subcategory_id" class="form-control">
                                 <option value="" selected>@lang("بدون تصنيف فرعي")</option>
                                 @foreach($subcategories as $subcategory)
+<<<<<<< HEAD
+                                    <option @if($subcategory->id == request()->input('subcategory_id')) selected @endif value="{{$subcategory->id}}">{{$subcategory->name}}</option>
+=======
                                     <option @if($subcategory->id == request()->input('subcategory_id')) selected
                                             @endif value="{{$subcategory->id}}">{{$subcategory->name}}</option>
+>>>>>>> refs/remotes/origin/master
                                 @endforeach
                             </select>
                         </div>
@@ -132,11 +144,17 @@
                                             display: flex;
                                             flex-direction: column;
                                             ">
+<<<<<<< HEAD
+@foreach(array_slice($general->phone, 0, 2) as $phone)
+    <span style="margin: 0; font-size: 8px;">{{$phone}}</span>
+@endforeach
+=======
                                     @foreach(array_slice($general->phone, 0, 2) as $phone)
                                         <span style="margin: 0; font-size: 8px;">{{$phone}}</span>
                                     @endforeach
 
 
+>>>>>>> refs/remotes/origin/master
                                 </div>
                             </div>
                             <div>
@@ -188,7 +206,10 @@
             });
 
             var urlParams = new URLSearchParams(window.location.search);
+<<<<<<< HEAD
+=======
 
+>>>>>>> refs/remotes/origin/master
             function fetchPrintDetails() {
                 var brandId = urlParams.get('brand_id');
                 var categoryId = urlParams.get('category_id');

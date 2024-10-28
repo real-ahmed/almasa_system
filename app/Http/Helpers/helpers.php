@@ -97,11 +97,11 @@ function strLimit($title = null, $length = 10)
 
 function getImage($image, $size = null)
 {
-    $clean = '';
+    $timestamp = time(); // Current timestamp
     if (file_exists($image) && is_file($image)) {
-        return asset($image) . $clean;
+        return asset($image) . '?t=' . $timestamp;
     }
-    return asset('assets/images/logoIcon/small_logo.png');
+    return asset('assets/images/logoIcon/small_logo.png') . '?t=' . $timestamp;
 }
 
 function getPaginate($paginate = 20)
