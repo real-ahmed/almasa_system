@@ -19,6 +19,9 @@ class RepairDeliverController extends Controller
 
         $deliversQuery = RepairDeliver::query();
 
+        if ($request->has('from_date') && $request->has('to_date')) {
+            $deliversQuery->whereBetween('invoice_print_date', [$request->input('from_date'), $request->input('to_date')]);
+        }
         if ($search) {
             $deliversQuery->where(function ($query) use ($search) {
                 $query->whereHas('repair.customer', function ($subQuery) use ($search) {
@@ -39,6 +42,8 @@ class RepairDeliverController extends Controller
                     ->orWhereDate('created_at', 'like', '%' . $search . '%');
             });
         }
+
+
 
 
         $delivers = $deliversQuery->where('status', $type)
