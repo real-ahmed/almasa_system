@@ -17,17 +17,20 @@
                                 </div>
                             </div>
                             <!-- Add Date Filter Inputs -->
-                            <div class="input-group col-auto">
-                                <input type="date" class="form-control" name="from_date"
-                                       value="{{ request()->input('from_date') }}" placeholder="@lang('من تاريخ')">
-                            </div>
-                            <div class="input-group col-auto">
-                                <input type="date" class="form-control" name="to_date"
-                                       value="{{ request()->input('to_date') }}" placeholder="@lang('إلى تاريخ')">
-                            </div>
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="submit">@lang('فلتر بتاريخ التسليم')</button>
-                            </div>
+                            @if($type == 1)
+                                <div class="input-group col-auto">
+                                    <input type="date" class="form-control" name="from_date"
+                                           value="{{ request()->input('from_date') }}" placeholder="@lang('من تاريخ')">
+                                </div>
+                                <div class="input-group col-auto">
+                                    <input type="date" class="form-control" name="to_date"
+                                           value="{{ request()->input('to_date') }}" placeholder="@lang('إلى تاريخ')">
+                                </div>
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary" type="submit">@lang('فلتر بتاريخ التسليم')</button>
+                                </div>
+                            @endif
+
                         </div>
                     </form>
                 </div>
