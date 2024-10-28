@@ -290,6 +290,7 @@ Route::middleware(['auth'])->group(function () {
                 Route::get("repair/deliver/save/{id}", "save")->name("save");
                 Route::post("repair/deliver/paid/save/{id}", "paid")->name("paid.save");
                 Route::post("repair/deliver/note/save/{id}", "saveNote")->name("note.save");
+                Route::get("repair/deliver/print/{id}", "clickOnPrint")->name("print");
 
             });
 

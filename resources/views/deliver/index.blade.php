@@ -59,7 +59,7 @@
 
                             <td>{{ \Carbon\Carbon::parse($deliver->repair->receive_date)->format('m/d/y h:iA') }}</td>
                             <td>{{ \Carbon\Carbon::parse($deliver->repair->expected_delivery_date)->format('m/d/y h:iA') }}</td>
-                            <td>{{ \Carbon\Carbon::parse($deliver->expected_delivery_date)->format('m/d/y h:iA') }}</td>
+                            <td>{{ $deliver->invoice_print_date ? \Carbon\Carbon::parse($deliver->invoice_print_date)->format('m/d/y h:iA'):" " }}</td>
 
 
                             <td>

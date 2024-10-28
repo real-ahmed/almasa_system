@@ -9,7 +9,7 @@
                 </div>
                 <div>
                     <iframe id="print" srcdoc="{{$printDeliver}}" hidden></iframe>
-                    <a id="print-btn" class="btn btn-secondary">@lang('طباعة الوصل')</a>
+                    <a id="print-btn"  class="btn btn-secondary">@lang('طباعة الوصل')</a>
 
                     @if(!$deliver->isPaid)
                         <a data-toggle="modal" data-target="#paidModal" class="btn btn-primary">@lang('تحصيل دفعة')</a>
@@ -58,6 +58,8 @@
                         <p><strong>@lang("تاريخ الاستلام") : </strong>{{ $deliver->repair->receive_date ?? '' }}</p>
                         <p><strong>@lang("تاريخ الوصل") : </strong>{{ $deliver->repair->created_at ?? '' }}</p>
                         <p><strong>@lang("الرقم المرجعي") : </strong>{{ $deliver->reference_number ?? '' }}</p>
+                        <p><strong>@lang("تاريخ التسليم (طباعة الفاتورة)") : </strong>{{ $deliver->invoice_print_date ?? '' }}</p>
+
                     </div>
                 </div>
                 <strong class="card-title">@lang("الشاشات")</strong>
@@ -130,10 +132,21 @@
 
 @push('script')
     <script>
+
         (function ($) {
             "use strict";
             $('#print-btn').click( function () {
                 $('#print')[0].contentWindow.print();
+                $.ajax({
+                    url: "{{route('receptionist.repair.deliver.print',$deliver->id)}}" ,
+                    method: 'GET',
+                    success: function (response) {
+
+                    },
+                    error: function (error) {
+                        console.log(error)
+                    }
+                });
             });
 
         })(jQuery);
