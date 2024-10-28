@@ -73,10 +73,13 @@
                         <th>@lang("رقم")</th>
                         <th>@lang("البراند")</th>
                         <th>@lang("الموديل")</th>
+                        <th>@lang("العطل")</th>
                         <th>@lang("العميل")</th>
                         <th>@lang("المستلم")</th>
                         <th>@lang("المخزن")</th>
+                        <th>@lang("تاريخ الاستلام")</th>
                         <th>@lang("الحالة")</th>
+
                         @if($type == 0 || auth()->user()->isreceptionist )
                             <th>@lang("العمليات")</th>
                         @endif
@@ -88,9 +91,11 @@
                             <td>{{ $screens->firstItem() + $loop->index}}</td>
                             <td>{{$screen->brand->name}}</td>
                             <td>{{$screen->model}}</td>
+                            <td>{{$screen->issue}}</td>
                             <td>{{$screen->repairs->first()->customer->name}}</td>
                             <td>{{$screen->repairs->first()->receptionist->name}}</td>
                             <td>{{$screen->warehouse->name}}</td>
+                            <td>{{ \Carbon\Carbon::parse($screen->repairs->first()->receive_date)->format('m/d/y h:iA') }}</td>
                             <td><?php echo $screen->statusName ?></td>
                             @if($type == 0 || auth()->user()->isreceptionist)
 
