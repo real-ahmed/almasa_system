@@ -40,6 +40,7 @@
                         <th>@lang("الخصم")</th>
 
                         <th>@lang("التاريخ")</th>
+                        <th>@lang("فترات الراحة")</th>
                         <td>@lang('العمليات')</td>
 
 
@@ -56,6 +57,21 @@
                             <td>{{isset($record->deduction->amount) ? showAmount($record->deduction->amount) : '-'}} {{isset($record->deduction->amount)? $general->money_sign:''}}</td>
                             <td>{{date_format($record->created_at,'m/d/y h:iA')}}</td>
 
+                            <td>
+                                @if($record->pause_starts && $record->pause_ends)
+                                    @php
+                                        $pauseStarts = json_decode($record->pause_starts, true);
+                                        $pauseEnds = json_decode($record->pause_ends, true);
+                                    @endphp
+                                    @foreach($pauseStarts as $index => $start)
+                                        <div>
+                                            {{ \Carbon\Carbon::parse($start)->format('h:i A') }} - {{ \Carbon\Carbon::parse($pauseEnds[$index])->format('h:i A') }}
+                                        </div>
+                                    @endforeach
+                                @else
+                                    -
+                                @endif
+                            </td>
 
                             <td>
                                 @if($record->status == 0)
@@ -64,6 +80,9 @@
                                 @elseif($record->status == 1)
                                     <a data-toggle="modal" data-target="#repairModal" data-id="{{ $record->id }}"
                                        class="btn btn-danger edit"><i class="fa-solid fa-right-from-bracket"></i></a>
+                                       
+                                    <a data-toggle="modal" data-target="#pauseModal" data-id="{{ $record->id }}" 
+                                       class="btn btn-warning edit"><i class="fa-solid fa-pause"></i></a>
                                 @else
                                     <a data-toggle="modal" data-target="#repairModal" data-id="{{ $record->id }}"
                                        data-departure_time="{{ \Carbon\Carbon::parse($record->departure_time)->format('h:i A')}}"
@@ -90,6 +109,9 @@
         </div>
     </div>
     @include("attendance.model")
+    @if($records->count() > 0 )
+        @include("attendance.pause")
+    @endif
     {{--    @include("models.delete")--}}
 
 @endsection

@@ -106,7 +106,8 @@ class ScreenReceiveController extends Controller
 
         }
 
-        $receptionist = auth()->user()->isadmin ? $request->input('receptionist_id') : auth()->user()->id;
+        // $receptionist = auth()->user()->isadmin ? $request->input('receptionist_id') : auth()->user()->id;
+        $receptionist =  $request->input('receptionist_id') ;
 
 
         $repair = Repair::updateOrCreate(

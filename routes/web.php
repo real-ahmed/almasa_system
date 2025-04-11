@@ -195,6 +195,7 @@ Route::middleware(['auth'])->group(function () {
                 Route::get("attendance/requests/departure/", "departureRequests")->name("request.departure");
                 Route::get("attendance/departure/history", "recordHistory")->name("history");
                 Route::post("attendance/save/{id?}", "save")->name("save");
+                Route::post("attendance/pause/{id?}", "pause")->name("pause");
 
             });
 

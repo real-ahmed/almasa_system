@@ -58,7 +58,8 @@
                             </div>
 
 
-                            <div class="form-group mb-3" @if(!auth()->user()->isadmin) style="display: none" @endif>
+                            <!-- <div class="form-group mb-3" @if(!auth()->user()->isadmin) style="display: none" @endif> -->
+                            <div class="form-group mb-3" >
                                 <label for="receive_date" class="col-form-label">@lang('موظف الاستقبال')</label>
                                 <div class="input-group">
                                     <select name="receptionist_id" class="form-control">

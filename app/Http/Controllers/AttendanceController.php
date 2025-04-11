@@ -101,7 +101,21 @@ class AttendanceController extends Controller
 
         $arrivalTime = Carbon::parse($attendance->arrival_time);
         $departureTime = Carbon::parse($attendance->departure_time);
-        $actualWorkHours = $arrivalTime->diffInSeconds($departureTime) / 3600;
+
+        // Calculate total break time
+        $totalBreakTime = 0;
+        if ($attendance->pause_starts && $attendance->pause_ends) {
+            $pauseStarts = json_decode($attendance->pause_starts, true);
+            $pauseEnds = json_decode($attendance->pause_ends, true);
+            foreach ($pauseStarts as $index => $start) {
+                $start = Carbon::parse($start);
+                $end = Carbon::parse($pauseEnds[$index]);
+                $totalBreakTime += $start->diffInSeconds($end);
+            }
+        }
+
+        // Calculate actual work hours
+        $actualWorkHours = ($arrivalTime->diffInSeconds($departureTime) - $totalBreakTime) / 3600;
 
 
         if ($actualWorkHours < $requiredWorkHours) {
@@ -139,7 +153,21 @@ class AttendanceController extends Controller
 
         $arrivalTime = Carbon::parse($attendance->arrival_time);
         $departureTime = Carbon::parse($attendance->departure_time);
-        $actualWorkHours = $arrivalTime->diffInSeconds($departureTime) / 3600;
+
+        // Calculate total break time
+        $totalBreakTime = 0;
+        if ($attendance->pause_starts && $attendance->pause_ends) {
+            $pauseStarts = json_decode($attendance->pause_starts, true);
+            $pauseEnds = json_decode($attendance->pause_ends, true);
+            foreach ($pauseStarts as $index => $start) {
+                $start = Carbon::parse($start);
+                $end = Carbon::parse($pauseEnds[$index]);
+                $totalBreakTime += $start->diffInSeconds($end);
+            }
+        }
+
+        // Calculate actual work hours
+        $actualWorkHours = ($arrivalTime->diffInSeconds($departureTime) - $totalBreakTime) / 3600;
 
 
         if ($actualWorkHours < $requiredWorkHours) {
@@ -161,6 +189,23 @@ class AttendanceController extends Controller
         }
         $attendance->save();
         return back()->with('success', 'تم حقظ البيانات');
+    }
+    public function pause(Request $request, $id)
+    {
+        $attendance = Attendance::findOrFail($id);
+        
+        $pauseStarts = $attendance->pause_starts ? json_decode($attendance->pause_starts, true) : [];
+        $pauseEnds = $attendance->pause_ends ? json_decode($attendance->pause_ends, true) : [];
+        
+        $pauseStarts[] = $request->input('pause_start');
+        $pauseEnds[] = $request->input('pause_end');
+        
+        $attendance->pause_starts = json_encode($pauseStarts);
+        $attendance->pause_ends = json_encode($pauseEnds);
+        
+        $attendance->save();
+        
+        return back()->with('success', 'تم حفظ فترة الاستراحة بنجاح');
     }
 
 
