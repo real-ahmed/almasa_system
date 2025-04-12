@@ -20,7 +20,14 @@ class RepairDeliverController extends Controller
         $deliversQuery = RepairDeliver::query();
 
         if ($request->has('from_date') && $request->has('to_date')) {
-            $deliversQuery->whereBetween('invoice_print_date', [$request->input('from_date'), $request->input('to_date')]);
+            $fromDate = $request->input('from_date');
+            $toDate = $request->input('to_date');
+            
+            if (strtotime($fromDate) && strtotime($toDate)) {
+                $fromDate = Carbon::parse($fromDate)->startOfDay();
+                $toDate = Carbon::parse($toDate)->endOfDay();
+                $deliversQuery->whereBetween('invoice_print_date', [$fromDate, $toDate]);
+            }
         }
         if ($search) {
             $deliversQuery->where(function ($query) use ($search) {
